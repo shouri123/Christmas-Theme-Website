@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter Wonder 2026</title>
+    
+    <!-- SEO & Meta Tags -->
+    <meta name="description" content="A digital sanctuary of warmth and wonder. Experience the magic of Winter Wonder 2026.">
+    <meta property="og:title" content="Winter Wonder 2026">
+    <meta property="og:description" content="Join us for the countdown to Christmas 2026 in a world of digital snow and elegance.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1543589077-47d81606c1bf?q=80&w=1000&auto=format&fit=crop">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'xmas-red': 'var(--xmas-red)',
+                        'xmas-green': 'var(--xmas-green)',
+                        'xmas-accent': 'var(--xmas-accent)',
+                        'xmas-dark': 'var(--xmas-dark)',
+                        'xmas-text': 'var(--xmas-text)',
+                        'xmas-card': 'var(--xmas-card)',
+                    },
+                    fontFamily: {
+                        'script': ['"Great Vibes"', 'cursive'],
+                        'display': ['"Playfair Display"', 'serif'],
+                        'elegant': ['"Cinzel"', 'serif'],
+                        'body': ['"Poppins"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            /* Theme 1: Snow White (Default) */
+            --xmas-dark: #ffffff;
+            --xmas-red: #D90429;
+            --xmas-green: #10451D;
+            --xmas-accent: #D90429;
+            --xmas-text: #052216; /* Deep Evergreen Text */
+            --xmas-card: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(0, 0, 0, 0.05);
+            --shadow-color: rgba(217, 4, 41, 0.1);
+        }
+
+        body.dark-theme {
+            /* Theme 2: Evergreen (Dark Mode) */
+            --xmas-dark: #052216;
+            --xmas-red: #D90429;
+            --xmas-green: #2B9348;
+            --xmas-accent: #ffffff;
+            --xmas-text: #F1FAEE;
+            --xmas-card: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            background-color: var(--xmas-dark);
+            color: var(--xmas-text);
+            overflow-x: hidden;
+            transition: background-color 0.8s ease, color 0.5s ease;
+        }
+
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--xmas-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--xmas-red); border-radius: 10px; }
+
+        /* Advanced Glassmorphism */
+        .glass-panel {
+            background: var(--xmas-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 var(--shadow-color);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card {
+            background: var(--xmas-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .glass-card:hover::before { left: 100%; }
+        
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--xmas-red);
+            box-shadow: 0 15px 40px -10px rgba(217, 4, 41, 0.2);
+        }
+
+        .glass-input {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--glass-border);
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        body.dark-theme .glass-input {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.5);
+            border-color: var(--xmas-red);
+            outline: none;
+            box-shadow: 0 0 20px rgba(217, 4, 41, 0.15);
+        }
+
+        /* Typography */
+        h1, h2, h3 { letter-spacing: -0.02em; }
+        .font-script { line-height: 1.2; }
+
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; transition: opacity 0.5s; }
+        
+        .loader { position: fixed; inset: 0; background: var(--xmas-dark); z-index: 100; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease; }
+        
+        /* Quiz & Interactive Elements */
+        .quiz-option.selected {
+            background: var(--xmas-red);
+            color: white;
+            border-color: var(--xmas-red);
+            box-shadow: 0 10px 20px rgba(217, 4, 41, 0.3);
+        }
+
+        .timeline-line::before {
+            background: linear-gradient(to bottom, transparent, var(--xmas-red), transparent);
+        }
+
+        /* Toast Notification */
+        .toast {
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Wish Envelope Animation */
+        .envelope-container {
+            perspective: 1000px;
+        }
+        .letter-sent {
+            animation: flyAway 1.5s ease-in-out forwards;
+        }
+        @keyframes flyAway {
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(-100px) scale(0.5) rotate(10deg); opacity: 0.8; }
+            100% { transform: translateY(-500px) scale(0) rotate(20deg); opacity: 0; }
+        }
+
+        /* Interactive Clickable Items */
+        .interactive-hover:active { transform: scale(0.95); }
+
+        /* Hide Scrollbar for Gallery */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="antialiased font-body selection:bg-xmas-red selection:text-white">
+
+    <!-- Audio Assets -->
+    <audio id="bg-music" loop>
+        <source src="Jingle Bells _ The original song _ Written in 1850 by James Lord Pierpont _ Christmas _ Thanksgiving.mp3" type="audio/mpeg">
+    </audio>
+   
+
+    <!-- Global Toast Notification -->
+    <div id="toast" class="fixed bottom-8 right-8 z-50 glass-panel px-6 py-4 rounded-xl flex items-center gap-3 toast border-l-4 border-xmas-red shadow-2xl max-w-[90vw] mx-auto right-4 md:right-8 md:max-w-md">
+        <div class="bg-xmas-red/10 p-2 rounded-full text-xmas-red" id="toast-icon">
+            <i data-lucide="bell" class="w-5 h-5"></i>
+        </div>
+        <div>
+            <h4 class="font-bold text-sm text-xmas-text" id="toast-title">Notification</h4>
+            <p class="text-xs opacity-60 text-xmas-text" id="toast-msg">Details here</p>
+        </div>
+    </div>
+
+    <!-- Welcome Toast (Top Center) -->
+    <div id="welcome-toast" class="fixed top-24 left-1/2 transform -translate-x-1/2 z-40 glass-panel px-6 py-3 rounded-full flex items-center gap-2 toast border border-xmas-red/20 shadow-lg w-max">
+        <i data-lucide="sparkles" class="w-4 h-4 text-xmas-red"></i>
+        <span class="text-xs font-bold text-xmas-text tracking-widest uppercase">Welcome Back</span>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loader" class="loader">
+        <div class="text-center relative">
+            <div class="absolute inset-0 bg-xmas-red blur-3xl opacity-20 rounded-full animate-pulse"></div>
+            <h1 class="text-4xl md:text-6xl font-display text-xmas-text relative z-10 italic">Winter<span class="text-xmas-red not-italic font-bold">Wonder</span></h1>
+        </div>
+    </div>
+
+    <!-- 3D Background -->
+    <div id="canvas-container"></div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-xmas-card backdrop-blur-xl transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 lg:hidden">
+        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-xmas-text interactive-hover">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <div class="flex flex-col items-center gap-8 text-xmas-text">
+            <a href="#home" class="text-3xl font-display font-bold hover:text-xmas-red transition-colors" onclick="toggleMobileMenu(); playSound('click')">Home</a>
+            <a href="#shop" class="text-3xl font-display font-bold hover:text-xmas-red transition-colors" onclick="toggleMobileMenu(); playSound('click')">Gifts</a>
+            <a href="#events" class="text-3xl font-display font-bold hover:text-xmas-red transition-colors" onclick="toggleMobileMenu(); playSound('click')">Events</a>
+            <a href="#reindeer" class="text-3xl font-display font-bold hover:text-xmas-red transition-colors" onclick="toggleMobileMenu(); playSound('click')">Reindeer</a>
+            <a href="#gallery" class="text-3xl font-display font-bold hover:text-xmas-red transition-colors" onclick="toggleMobileMenu(); playSound('click')">Gallery</a>
+            <a href="#wish" class="text-3xl font-display font-bold hover:text-xmas-red transition-colors" onclick="toggleMobileMenu(); playSound('click')">Wishes</a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 py-4 px-4 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center glass-panel rounded-2xl px-6 md:px-8 py-3 md:py-4">
+            <div class="flex items-center gap-3 group cursor-pointer interactive-hover" onclick="playSound('click')">
+                <div class="bg-xmas-red p-2 rounded-lg text-white group-hover:rotate-12 transition-transform">
+                    <i data-lucide="snowflake" class="w-5 h-5"></i>
+                </div>
+                <span class="font-display font-bold text-lg md:text-xl tracking-tight text-xmas-text">NorthPole<span class="text-xmas-red">.ui</span></span>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex gap-8 text-xs font-bold tracking-widest uppercase items-center text-xmas-text">
+                <a href="#home" class="hover:text-xmas-red transition-colors py-2 relative group" onclick="playSound('click')">Home<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-xmas-red transition-all group-hover:w-full"></span></a>
+                <a href="#shop" class="hover:text-xmas-red transition-colors py-2 relative group" onclick="playSound('click')">Gifts<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-xmas-red transition-all group-hover:w-full"></span></a>
+                <a href="#events" class="hover:text-xmas-red transition-colors py-2 relative group" onclick="playSound('click')">Events<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-xmas-red transition-all group-hover:w-full"></span></a>
+                <a href="#reindeer" class="hover:text-xmas-red transition-colors py-2 relative group" onclick="playSound('click')">Crew<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-xmas-red transition-all group-hover:w-full"></span></a>
+                <a href="#wish" class="hover:text-xmas-red transition-colors py-2 relative group" onclick="playSound('click')">Wishes<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-xmas-red transition-all group-hover:w-full"></span></a>
+            </div>
+            
+            <div class="flex items-center gap-3 md:gap-4">
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="flex items-center gap-2 text-xs font-bold border border-current/20 rounded-full pl-1 pr-3 py-1 hover:bg-current/5 transition-all group text-xmas-text interactive-hover">
+                    <span class="bg-xmas-red rounded-full p-1 text-white"><i data-lucide="palette" class="w-3 h-3"></i></span>
+                    <span id="theme-label" class="opacity-70 group-hover:opacity-100 hidden sm:inline">Snow White</span>
+                </button>
+                
+                <button id="music-toggle" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors relative overflow-hidden interactive-hover">
+                    <div class="absolute inset-0 bg-xmas-red/10 scale-y-0 origin-bottom transition-transform duration-1000" id="music-viz"></div>
+                    <i data-lucide="music" class="w-4 h-4 text-xmas-red relative z-10"></i>
+                </button>
+                
+                <!-- Cart Icon -->
+                <div class="relative cursor-pointer hover:scale-110 transition-transform interactive-hover mr-2 lg:mr-0" onclick="playSound('click')">
+                    <i data-lucide="shopping-bag" class="w-5 h-5 text-xmas-text"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-xmas-red text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full opacity-0 transition-opacity">0</span>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobile-menu-btn" class="lg:hidden p-1 text-xmas-text interactive-hover" onclick="toggleMobileMenu(); playSound('click')">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center relative px-4 pt-20 overflow-hidden">
+            <!-- Decorative Elements -->
+            <div class="absolute top-1/4 left-10 w-64 h-64 bg-xmas-red rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse"></div>
+            <div class="absolute bottom-1/4 right-10 w-64 h-64 bg-xmas-green rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse" style="animation-delay: 1s;"></div>
+
+            <div class="container mx-auto max-w-7xl z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                
+                <!-- Left Column -->
+                <div class="text-center lg:text-left space-y-6 md:space-y-8 order-2 lg:order-1 pb-10 lg:pb-0">
+                    <div class="overflow-hidden flex justify-center lg:justify-start items-center gap-4">
+                        <div class="h-[1px] w-8 md:w-12 bg-xmas-red/50"></div>
+                        <p class="hero-subtitle text-xmas-red font-bold tracking-[0.4em] text-xs md:text-sm uppercase transform translate-y-full">Est. 2026 North Pole</p>
+                    </div>
+                    
+                    <div class="overflow-hidden relative">
+                        <h1 class="hero-title text-5xl md:text-8xl lg:text-9xl font-display font-bold leading-[0.9] tracking-tighter transform translate-y-full text-xmas-text">
+                            Merry <br/> 
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-xmas-red to-red-400 font-script text-6xl md:text-8xl lg:text-[10rem] py-2 md:py-4 block relative -mt-2 md:-mt-4 lg:-mt-8">Christmas</span>
+                        </h1>
+                    </div>
+                    
+                    <div class="overflow-hidden">
+                        <p class="hero-desc font-light text-base md:text-xl max-w-lg mx-auto lg:mx-0 transform translate-y-full opacity-80 leading-relaxed text-xmas-text px-4 lg:px-0">
+                            Embrace the elegance of the season. A digital sanctuary of <span class="text-xmas-red font-semibold">warmth</span>, <span class="text-xmas-green font-semibold">wonder</span>, and joy.
+                        </p>
+                    </div>
+                    
+                    <div class="hero-btn pt-4 md:pt-8 transform opacity-0 flex flex-col md:flex-row gap-4 md:gap-6 justify-center lg:justify-start items-center">
+                        <a href="#shop" onclick="playSound('click')" class="group relative px-8 py-4 md:px-10 md:py-5 bg-xmas-red text-white font-bold text-xs md:text-sm tracking-widest uppercase hover:bg-red-700 transition-all duration-300 rounded-sm shadow-[0_20px_50px_-12px_rgba(217,4,41,0.5)] hover:shadow-[0_20px_50px_-12px_rgba(217,4,41,0.8)] overflow-hidden interactive-hover">
+                            <span class="relative z-10">Explore Collection</span>
+                            <div class="absolute inset-0 h-full w-full scale-0 rounded-sm transition-all duration-300 group-hover:scale-100 group-hover:bg-red-800/20"></div>
+                        </a>
+                        <a href="#countdown" onclick="playSound('click')" class="group flex items-center gap-2 text-xs md:text-sm font-bold tracking-widest uppercase hover:text-xmas-red transition-colors text-xmas-text interactive-hover">
+                            <span>View Countdown</span>
+                            <i data-lucide="arrow-down" class="w-4 h-4 group-hover:translate-y-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="order-1 lg:order-2 flex justify-center perspective-1000 opacity-0 hero-image-container translate-x-10 mt-8 lg:mt-0">
+                    <div class="relative w-3/4 md:w-full max-w-md aspect-[4/5] glass-card rounded-[1.5rem] md:rounded-[2rem] p-3 md:p-4 transform rotate-y-12 hover:rotate-y-0 transition-transform duration-700 group">
+                        <div class="w-full h-full rounded-[1rem] md:rounded-[1.5rem] overflow-hidden relative bg-black/5">
+                            <img src="https://images.unsplash.com/photo-1543589077-47d81606c1bf?q=80&w=1000&auto=format&fit=crop" 
+                                 alt="Christmas Hero" 
+                                 class="w-full h-full object-cover transform scale-110 group-hover:scale-100 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white/30 backdrop-blur-md border border-white/40 p-3 md:p-4 rounded-xl shadow-lg">
+                                <p class="text-xmas-red font-script text-2xl md:text-3xl">Magic</p>
+                                <p class="text-[10px] md:text-xs text-white uppercase tracking-widest font-bold">is in the air</p>
+                            </div>
+                        </div>
+                        <div class="absolute -top-6 -right-6 md:-top-10 md:-right-10 w-16 h-16 md:w-24 md:h-24 bg-xmas-red rounded-full blur-2xl opacity-20 animate-pulse"></div>
+                        <div class="absolute -bottom-4 -left-4 md:-bottom-5 md:-left-5 w-12 h-12 md:w-20 md:h-20 bg-xmas-green rounded-full blur-2xl opacity-20 animate-pulse" style="animation-delay: 1.5s"></div>
+                        <div class="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-white border border-gray-100 p-3 md:p-4 rounded-full shadow-xl animate-bounce" style="animation-duration: 3s">
+                            <i data-lucide="star" class="w-4 h-4 md:w-6 md:h-6 text-xmas-red fill-current"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Story Section -->
+        <section id="story" class="py-12 md:py-24 relative z-10">
+            <div class="container mx-auto px-4">
+                <div class="glass-panel rounded-[2rem] p-8 md:p-20 flex flex-col md:flex-row items-center gap-12 md:gap-16 max-w-7xl mx-auto border-t border-white/50">
+                    <div class="md:w-1/2 space-y-6 md:space-y-8">
+                        <span class="text-xmas-red font-bold tracking-widest text-xs uppercase">Our Philosophy</span>
+                        <h2 class="text-3xl md:text-6xl font-display leading-tight text-xmas-text">Crafting Digital <br/><span class="font-script text-xmas-red text-4xl md:text-7xl">Memories</span></h2>
+                        <div class="space-y-4 md:space-y-6 text-base md:text-lg font-light opacity-80 leading-relaxed text-xmas-text">
+                            <p>Winter is more than a season; it is a celebration of stillness. In a world of noise, we designed this space to be your quiet cabin in the digital woods.</p>
+                            <p>Wrapped in the colors of the evergreen forest and the crimson holly berry, every interaction is a gift waiting to be unwrapped.</p>
+                        </div>
+                        <div class="pt-4 flex items-center gap-4 text-xmas-text">
+                            <div class="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center">
+                                <i data-lucide="feather" class="w-5 h-5 text-xmas-red"></i>
+                            </div>
+                            <div>
+                                <p class="font-display font-bold text-lg">The Design Elves</p>
+                                <p class="text-xs opacity-60 uppercase tracking-wider">North Pole HQ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 w-full h-[300px] md:h-[500px] relative rounded-[2rem] overflow-hidden group shadow-2xl">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-xmas-green to-black opacity-80"></div>
+                        <div class="absolute inset-0 flex items-center justify-center p-8 md:p-12 text-center border-[1px] border-white/10 m-4 rounded-[1.5rem]">
+                             <div class="space-y-4 transform group-hover:scale-105 transition-transform duration-700">
+                                <i data-lucide="tree-pine" class="w-16 h-16 md:w-20 md:h-20 text-white mx-auto opacity-80"></i>
+                                <p class="font-script text-3xl md:text-4xl text-white">"Magic is believing."</p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- History & Origins Section -->
+        <section id="history" class="py-12 md:py-24 relative z-10">
+            <div class="container mx-auto px-4">
+                <!-- Section Header -->
+                <div class="text-center mb-12 md:mb-20 section-header opacity-0 translate-y-10">
+                    <span class="text-xmas-red font-bold tracking-[0.3em] text-xs uppercase mb-3 block">Legends & Lore</span>
+                    <h2 class="text-3xl md:text-6xl font-display text-xmas-text">Tales of <span class="text-xmas-red italic font-serif">Yore</span></h2>
+                    <p class="opacity-70 font-light text-base md:text-lg text-xmas-text mt-4 max-w-2xl mx-auto">Discover the ancient origins that sparked the magic we celebrate today.</p>
+                </div>
+
+                <!-- Content Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
+                    <!-- Christmas History Card -->
+                    <div class="glass-panel rounded-[2rem] p-8 md:p-12 history-card opacity-0 translate-y-10 border-t border-white/50 group hover:border-xmas-red/30 transition-colors">
+                        <div class="bg-xmas-red/10 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-6 text-xmas-red group-hover:scale-110 transition-transform duration-500">
+                            <i data-lucide="book-open" class="w-6 h-6 md:w-8 md:h-8"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-display mb-4 text-xmas-text">The Ancient Origins</h3>
+                        <p class="text-sm md:text-base opacity-80 leading-relaxed text-xmas-text font-light">
+                            Long before the advent of Christmas, midwinter was a time of celebration around the world. Early Europeans celebrated light and birth in the darkest days of winter. In Rome, <span class="font-medium text-xmas-red">Saturnalia</span> honored Saturn, the god of agriculture.
+                            <br><br>
+                            It wasn't until the 4th century that church officials decided to institute the birth of Jesus as a holiday. Pope Julius I chose December 25, likely to adopt and absorb the traditions of these popular pagan winter festivals.
+                        </p>
+                    </div>
+
+                    <!-- Santa History Card -->
+                    <div class="glass-panel rounded-[2rem] p-8 md:p-12 history-card opacity-0 translate-y-10 border-t border-white/50 group hover:border-xmas-green/30 transition-colors">
+                        <div class="bg-xmas-green/10 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-6 text-xmas-green group-hover:scale-110 transition-transform duration-500">
+                            <i data-lucide="user" class="w-6 h-6 md:w-8 md:h-8"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-display mb-4 text-xmas-text">The Legend of St. Nick</h3>
+                        <p class="text-sm md:text-base opacity-80 leading-relaxed text-xmas-text font-light">
+                            The legend of Santa Claus can be traced back hundreds of years to a monk named <span class="font-medium text-xmas-green">St. Nicholas</span>. Born in modern-day Turkey around 280 A.D., he was admired for his piety and kindness, often traveling the countryside to help the poor and sick.
+                            <br><br>
+                            The name Santa Claus evolved from his Dutch nickname, <em>Sinter Klaas</em>, a shortened form of Sint Nikolaas (Dutch for Saint Nicholas).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section: The Flight Crew (Reindeer Profiles) -->
+        <section id="reindeer" class="py-12 md:py-24 relative z-10 overflow-hidden">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 md:mb-16 section-header opacity-0 translate-y-10">
+                    <span class="text-xmas-red font-bold tracking-[0.3em] text-xs uppercase mb-3 block">North Pole Aviation</span>
+                    <h2 class="text-3xl md:text-6xl font-display text-xmas-text">The Flight <span class="text-xmas-red italic font-serif">Crew</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                    <!-- Dasher -->
+                    <div class="reindeer-card glass-card rounded-3xl overflow-hidden group cursor-pointer opacity-0 translate-y-10">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="4.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Dasher">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                <h3 class="text-2xl font-display mb-1">Dasher</h3>
+                                <p class="text-xs uppercase tracking-widest opacity-70 mb-2">Speed Specialist</p>
+                                <p class="text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">"Fastest hooves in the north."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dancer -->
+                    <div class="reindeer-card glass-card rounded-3xl overflow-hidden group cursor-pointer opacity-0 translate-y-10" style="transition-delay: 100ms;">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="1.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Dancer">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                <h3 class="text-2xl font-display mb-1">Dancer</h3>
+                                <p class="text-xs uppercase tracking-widest opacity-70 mb-2">Agility Expert</p>
+                                <p class="text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">"Graceful through the aurora."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prancer -->
+                    <div class="reindeer-card glass-card rounded-3xl overflow-hidden group cursor-pointer opacity-0 translate-y-10" style="transition-delay: 200ms;">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="2.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Prancer">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                <h3 class="text-2xl font-display mb-1">Prancer</h3>
+                                <p class="text-xs uppercase tracking-widest opacity-70 mb-2">Morale Officer</p>
+                                <p class="text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">"Spreading cheer mid-flight."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rudolph -->
+                    <div class="reindeer-card glass-card rounded-3xl overflow-hidden group cursor-pointer opacity-0 translate-y-10 border-2 border-transparent hover:border-xmas-red/50 transition-colors" style="transition-delay: 300ms;">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="3.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Rudolph">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <!-- Subtle Red Nose Glow -->
+                            <div class="absolute top-1/2 left-1/2 w-4 h-4 bg-red-500 rounded-full blur-xl opacity-40 group-hover:opacity-80 transition-opacity"></div>
+                            
+                            <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                <h3 class="text-2xl font-display mb-1 text-red-200">Rudolph</h3>
+                                <p class="text-xs uppercase tracking-widest opacity-70 mb-2">Navigation Lead</p>
+                                <p class="text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">"Guiding light in the storm."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Gallery Carousel Section -->
+        <section id="gallery" class="py-12 md:py-24 relative z-10 overflow-hidden">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 section-header opacity-0 translate-y-10 max-w-7xl mx-auto">
+                    <div>
+                        <span class="text-xmas-red font-bold tracking-[0.3em] text-xs uppercase mb-3 block">Generative Art Series</span>
+                        <h2 class="text-3xl md:text-6xl font-display text-xmas-text">Digital <span class="text-xmas-red italic font-serif">Visions</span></h2>
+                    </div>
+                    <div class="flex gap-4 mt-6 md:mt-0">
+                        <button onclick="scrollGallery(-1); playSound('click')" class="w-12 h-12 rounded-full border border-current/20 flex items-center justify-center hover:bg-xmas-red hover:text-white transition-all interactive-hover text-xmas-text">
+                            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                        </button>
+                        <button onclick="scrollGallery(1); playSound('click')" class="w-12 h-12 rounded-full border border-current/20 flex items-center justify-center hover:bg-xmas-red hover:text-white transition-all interactive-hover text-xmas-text">
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="image-carousel" class="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-8 -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth">
+                    <!-- Image 1 -->
+                    <div class="min-w-[85vw] md:min-w-[400px] aspect-[3/4] md:aspect-[4/5] glass-card rounded-[2rem] p-3 snap-center relative group cursor-pointer gallery-item opacity-0 translate-y-10">
+                        <div class="w-full h-full rounded-[1.5rem] overflow-hidden relative">
+                            <img src="https://plus.unsplash.com/premium_photo-1668893830822-c6145e9f107a?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="North Pole" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                                <p class="font-display text-xl">Neon North</p>
+                                <p class="text-[10px] uppercase tracking-widest opacity-80">Generative Landscape</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image 2 -->
+                    <div class="min-w-[85vw] md:min-w-[400px] aspect-[3/4] md:aspect-[4/5] glass-card rounded-[2rem] p-3 snap-center relative group cursor-pointer gallery-item opacity-0 translate-y-10">
+                        <div class="w-full h-full rounded-[1.5rem] overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1529973625058-a665431328fb?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Streets during Christmas" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                                <p class="font-display text-xl">Fractal Fir</p>
+                                <p class="text-[10px] uppercase tracking-widest opacity-80">Algorithmic Nature</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image 3 -->
+                    <div class="min-w-[85vw] md:min-w-[400px] aspect-[3/4] md:aspect-[4/5] glass-card rounded-[2rem] p-3 snap-center relative group cursor-pointer gallery-item opacity-0 translate-y-10">
+                        <div class="w-full h-full rounded-[1.5rem] overflow-hidden relative">
+                            <img src="https://thumbs.dreamstime.com/b/rudolph-red-nosed-reindeer-cheerful-cartoon-reindeer-shining-bright-red-nose-cartoon-reindeer-bright-red-nose-403621317.jpg" alt="AI Light Reindeer" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                                <p class="font-display text-xl">Starlight Guide</p>
+                                <p class="text-[10px] uppercase tracking-widest opacity-80">Digital Fauna</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image 4 -->
+                    <div class="min-w-[85vw] md:min-w-[400px] aspect-[3/4] md:aspect-[4/5] glass-card rounded-[2rem] p-3 snap-center relative group cursor-pointer gallery-item opacity-0 translate-y-10">
+                        <div class="w-full h-full rounded-[1.5rem] overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1543258103-a62bdc069871?q=80&w=800&auto=format&fit=crop" alt="Cozy Interior" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                                <p class="font-display text-xl">Infinite Hearth</p>
+                                <p class="text-[10px] uppercase tracking-widest opacity-80">Synthesized Warmth</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- New Section: Festive Flavors (Recipes) -->
+        <section id="recipes" class="py-12 md:py-24 relative z-10">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 md:mb-16 section-header opacity-0 translate-y-10">
+                    <h2 class="text-3xl md:text-6xl font-display text-xmas-text">Festive <span class="text-xmas-red">Flavors</span></h2>
+                    <p class="opacity-60 text-sm font-light mt-4">Seasonal comforts to warm the spirit.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Recipe 1: Mulled Wine -->
+                    <div class="recipe-card glass-panel p-6 rounded-[2rem] flex flex-col sm:flex-row gap-6 opacity-0 translate-y-10">
+                        <div class="w-full sm:w-1/3 aspect-square rounded-2xl overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" alt="Latte">
+                        </div>
+                        <div class="flex-1 flex flex-col justify-center">
+                            <h3 class="text-2xl font-display text-xmas-text mb-2">Gingerbread Latte</h3>
+                            <p class="text-xs font-bold text-xmas-red uppercase tracking-widest mb-4">Warm & Spicy</p>
+                            <p class="text-sm opacity-70 mb-6 font-light leading-relaxed text-xmas-text">Espresso, steamed milk, ginger syrup, and a dash of nutmeg. The perfect companion for a snowy evening.</p>
+                            <button class="text-xs font-bold uppercase tracking-widest text-xmas-text hover:text-xmas-red transition-colors flex items-center gap-2 self-start interactive-hover">
+                                View Recipe <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Recipe 2: Peppermint Bark -->
+                    <div class="recipe-card glass-panel p-6 rounded-[2rem] flex flex-col sm:flex-row gap-6 opacity-0 translate-y-10" style="transition-delay: 100ms;">
+                        <div class="w-full sm:w-1/3 aspect-square rounded-2xl overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" alt="Cookies">
+                        </div>
+                        <div class="flex-1 flex flex-col justify-center">
+                            <h3 class="text-2xl font-display text-xmas-text mb-2">Snowy Macarons</h3>
+                            <p class="text-xs font-bold text-xmas-red uppercase tracking-widest mb-4">Sweet & Delicate</p>
+                            <p class="text-sm opacity-70 mb-6 font-light leading-relaxed text-xmas-text">Almond meringue cookies filled with white chocolate peppermint ganache. A delicate bite of winter.</p>
+                            <button class="text-xs font-bold uppercase tracking-widest text-xmas-text hover:text-xmas-red transition-colors flex items-center gap-2 self-start interactive-hover">
+                                View Recipe <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Countdown Section -->
+        <section id="countdown" class="py-12 md:py-24 relative z-10">
+            <div class="container mx-auto px-4 text-center">
+                <div class="mb-12 md:mb-20 section-header opacity-0 translate-y-10">
+                    <span class="text-xmas-red font-bold tracking-[0.3em] text-xs uppercase mb-4 block">The New Year</span>
+                    <h2 class="text-4xl md:text-7xl font-display mb-2 text-xmas-text">Awaiting for the <span class="text-xmas-red italic font-serif">New Beggining</span></h2>
+                    <p class="font-script text-xl md:text-2xl text-xmas-text opacity-70" id="countdown-date-label">January 1, 2026</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
+                    <div class="glass-panel rounded-xl p-6 md:p-12 text-center counter-card opacity-0 scale-90 hover:bg-black/5 transition-all group relative overflow-hidden text-xmas-text interactive-hover">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-xmas-red transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                        <span id="days" class="text-4xl md:text-8xl font-display font-bold block mb-2 group-hover:text-xmas-red transition-colors">00</span>
+                        <span class="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase opacity-60">Days</span>
+                    </div>
+                    <div class="glass-panel rounded-xl p-6 md:p-12 text-center counter-card opacity-0 scale-90 hover:bg-black/5 transition-all group relative overflow-hidden text-xmas-text interactive-hover">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-xmas-red transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                        <span id="hours" class="text-4xl md:text-8xl font-display font-bold block mb-2 group-hover:text-xmas-red transition-colors">00</span>
+                        <span class="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase opacity-60">Hours</span>
+                    </div>
+                    <div class="glass-panel rounded-xl p-6 md:p-12 text-center counter-card opacity-0 scale-90 hover:bg-black/5 transition-all group relative overflow-hidden text-xmas-text interactive-hover">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-xmas-red transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                        <span id="minutes" class="text-4xl md:text-8xl font-display font-bold block mb-2 group-hover:text-xmas-red transition-colors">00</span>
+                        <span class="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase opacity-60">Mins</span>
+                    </div>
+                    <div class="glass-panel rounded-xl p-6 md:p-12 text-center counter-card opacity-0 scale-90 hover:bg-black/5 transition-all group relative overflow-hidden text-xmas-text interactive-hover">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-xmas-red transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                        <span id="seconds" class="text-4xl md:text-8xl font-display font-bold block mb-2 text-xmas-red">00</span>
+                        <span class="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase opacity-60">Secs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shop Section -->
+        <section id="shop" class="py-12 md:py-24 relative z-10">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 section-header opacity-0 translate-y-10 max-w-7xl mx-auto text-xmas-text">
+                    <div>
+                        <span class="text-xmas-red font-bold tracking-[0.3em] text-xs uppercase mb-3 block">Curated Selection</span>
+                        <h2 class="text-3xl md:text-6xl font-display">Holiday <span class="italic font-serif">Exclusives</span></h2>
+                    </div>
+                    <a href="#" class="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-xmas-red transition-colors mt-6 md:mt-0" onclick="playSound('click')">
+                        View Full Catalog <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    <!-- Product 1 -->
+                    <div class="glass-card rounded-none shop-card opacity-0 translate-y-10 group">
+                        <div class="h-64 md:h-80 bg-gradient-to-b from-black/5 to-transparent flex items-center justify-center relative overflow-hidden p-8">
+                             <div class="absolute inset-0 bg-xmas-red/0 group-hover:bg-xmas-red/5 transition-colors duration-500 z-0"></div>
+                             <i data-lucide="coffee" class="w-24 h-24 md:w-32 md:h-32 text-gray-400 group-hover:text-xmas-red/80 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-700 ease-out z-10 relative drop-shadow-xl"></i>
+                             <span class="absolute top-6 left-6 border border-white/20 backdrop-blur-md text-xs font-bold px-3 py-1 uppercase tracking-widest z-20 bg-black/5 text-xmas-text">Limited</span>
+                        </div>
+                        <div class="p-6 md:p-8 border-t border-black/5 bg-white/40">
+                            <div class="flex justify-between items-start mb-2 text-xmas-text">
+                                <h3 class="text-xl md:text-2xl font-display">Winter Brew Kit</h3>
+                                <span class="text-xmas-red font-bold font-display text-lg md:text-xl">$25</span>
+                            </div>
+                            <p class="text-sm opacity-60 font-light mb-6 text-xmas-text">Premium cocoa and ceramic mug set.</p>
+                            <button class="add-to-cart-btn w-full py-4 border border-black/10 hover:bg-xmas-text hover:text-white transition-all duration-300 uppercase text-xs font-bold tracking-widest text-xmas-text interactive-hover">Add to Cart</button>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="glass-card rounded-none shop-card opacity-0 translate-y-10 group" style="transition-delay: 100ms">
+                        <div class="h-64 md:h-80 bg-gradient-to-b from-black/5 to-transparent flex items-center justify-center relative overflow-hidden p-8">
+                             <div class="absolute inset-0 bg-xmas-red/0 group-hover:bg-xmas-red/5 transition-colors duration-500 z-0"></div>
+                             <i data-lucide="headphones" class="w-24 h-24 md:w-32 md:h-32 text-gray-400 group-hover:text-xmas-red/80 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-700 ease-out z-10 relative drop-shadow-xl"></i>
+                             <span class="absolute top-6 left-6 bg-xmas-red text-white text-xs font-bold px-3 py-1 uppercase tracking-widest z-20 shadow-lg">New Arrival</span>
+                        </div>
+                        <div class="p-6 md:p-8 border-t border-black/5 bg-white/40">
+                            <div class="flex justify-between items-start mb-2 text-xmas-text">
+                                <h3 class="text-xl md:text-2xl font-display">Silent Night Audio</h3>
+                                <span class="text-xmas-red font-bold font-display text-lg md:text-xl">$199</span>
+                            </div>
+                            <p class="text-sm opacity-60 font-light mb-6 text-xmas-text">Noise-cancelling peace on earth.</p>
+                            <button class="add-to-cart-btn w-full py-4 border border-black/10 hover:bg-xmas-text hover:text-white transition-all duration-300 uppercase text-xs font-bold tracking-widest text-xmas-text interactive-hover">Add to Cart</button>
+                        </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="glass-card rounded-none shop-card opacity-0 translate-y-10 group" style="transition-delay: 200ms">
+                        <div class="h-64 md:h-80 bg-gradient-to-b from-black/5 to-transparent flex items-center justify-center relative overflow-hidden p-8">
+                             <div class="absolute inset-0 bg-xmas-red/0 group-hover:bg-xmas-red/5 transition-colors duration-500 z-0"></div>
+                             <i data-lucide="gift" class="w-24 h-24 md:w-32 md:h-32 text-gray-400 group-hover:text-xmas-red/80 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-700 ease-out z-10 relative drop-shadow-xl"></i>
+                        </div>
+                        <div class="p-6 md:p-8 border-t border-black/5 bg-white/40">
+                            <div class="flex justify-between items-start mb-2 text-xmas-text">
+                                <h3 class="text-xl md:text-2xl font-display">Mystery Box</h3>
+                                <span class="text-xmas-red font-bold font-display text-lg md:text-xl">$50</span>
+                            </div>
+                            <p class="text-sm opacity-60 font-light mb-6 text-xmas-text">Five curated holiday surprises.</p>
+                            <button class="add-to-cart-btn w-full py-4 border border-black/10 hover:bg-xmas-text hover:text-white transition-all duration-300 uppercase text-xs font-bold tracking-widest text-xmas-text interactive-hover">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="py-12 md:py-24 relative z-10">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 md:mb-20 section-header opacity-0 translate-y-10">
+                    <h2 class="text-3xl md:text-6xl font-display text-xmas-text">Season <span class="text-xmas-red">Calendar</span></h2>
+                </div>
+                
+                <div class="relative max-w-5xl mx-auto timeline-line text-xmas-text">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-16 md:mb-20 relative event-item opacity-0 translate-y-10 group cursor-pointer interactive-hover" onclick="playSound('click')">
+                        <div class="md:w-5/12 text-center md:text-right md:pr-12 order-1 md:order-1 transition-transform group-hover:-translate-x-2">
+                            <h3 class="text-2xl md:text-3xl font-display mb-2 group-hover:text-xmas-red transition-colors">Tree Lighting</h3>
+                            <p class="opacity-60 text-sm font-light uppercase tracking-wider">Central Park Plaza</p>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-xmas-red rounded-full border border-white ring-4 ring-white/5 z-10 order-2 md:order-2 group-hover:scale-150 transition-transform"></div>
+                        <div class="md:w-5/12 md:pl-12 order-3 md:order-3 text-center md:text-left transition-transform group-hover:translate-x-2 mt-4 md:mt-0">
+                            <span class="text-4xl md:text-5xl font-display font-bold opacity-20 group-hover:opacity-100 transition-opacity">15</span>
+                            <span class="text-xs uppercase tracking-[0.4em] block mt-2 ml-1">December</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-16 md:mb-20 relative event-item opacity-0 translate-y-10 group cursor-pointer interactive-hover" onclick="playSound('click')">
+                        <div class="md:w-5/12 text-center md:text-right md:pr-12 order-1 md:order-1 md:text-left md:pl-0 md:pr-0 transition-transform md:group-hover:translate-x-2">
+                             <span class="text-4xl md:text-5xl font-display font-bold opacity-20 group-hover:opacity-100 transition-opacity block md:hidden">20</span>
+                             <span class="text-5xl font-display font-bold opacity-20 group-hover:opacity-100 transition-opacity hidden md:block text-right pr-12">20</span>
+                             <span class="text-xs uppercase tracking-[0.4em] block mt-2 md:mr-12 hidden md:block text-right">December</span>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white rounded-full border border-gray-200 ring-4 ring-black/5 z-10 order-2 group-hover:scale-150 transition-transform"></div>
+                        <div class="md:w-5/12 md:pl-12 order-3 text-center md:text-left md:pl-12 md:order-3 transition-transform md:group-hover:-translate-x-2 mt-2 md:mt-0">
+                             <h3 class="text-2xl md:text-3xl font-display mb-2 group-hover:text-xmas-red transition-colors">Carols by Candlelight</h3>
+                             <p class="opacity-60 text-sm font-light uppercase tracking-wider">The Great Hall</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row justify-between items-center relative event-item opacity-0 translate-y-10 group cursor-pointer interactive-hover" onclick="playSound('click')">
+                        <div class="md:w-5/12 text-center md:text-right md:pr-12 order-1 transition-transform group-hover:-translate-x-2">
+                            <h3 class="text-2xl md:text-3xl font-display mb-2 group-hover:text-xmas-red transition-colors">Santa's Arrival</h3>
+                            <p class="opacity-60 text-sm font-light uppercase tracking-wider">North Pole (Live)</p>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-xmas-red rounded-full border border-white ring-4 ring-white/5 z-10 order-2 group-hover:scale-150 transition-transform"></div>
+                        <div class="md:w-5/12 md:pl-12 order-3 text-center md:text-left transition-transform group-hover:translate-x-2 mt-4 md:mt-0">
+                            <span class="text-4xl md:text-5xl font-display font-bold opacity-20 group-hover:opacity-100 transition-opacity">24</span>
+                            <span class="text-xs uppercase tracking-[0.4em] block mt-2 ml-1">December</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="py-12 md:py-24 relative z-10 bg-white/30 backdrop-blur-md">
+            <div class="container mx-auto px-4 max-w-4xl text-center">
+                <div class="mb-12 md:mb-16 section-header opacity-0">
+                    <h2 class="text-3xl md:text-5xl font-display mb-4 text-xmas-text">Find Your Spirit</h2>
+                    <p class="opacity-70 font-light text-base md:text-lg text-xmas-text">Reveal your inner holiday persona.</p>
+                </div>
+
+                <div class="glass-panel p-6 md:p-16 rounded-[2rem] quiz-container opacity-0 translate-y-10">
+                    <div id="quiz-options-container">
+                        <h3 class="text-xl md:text-3xl font-display mb-8 md:mb-10 text-xmas-text">It's Christmas Eve. Where can we find you?</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12 text-xmas-text">
+                            <button class="quiz-option p-6 md:p-8 border border-black/10 rounded-xl hover:bg-black/5 transition-all text-left group interactive-hover" data-result="cozy" onclick="playSound('click')">
+                                <span class="block text-2xl mb-4 group-hover:scale-110 transition-transform">🔥</span>
+                                <span class="font-bold block mb-1">By the Fire</span>
+                                <span class="text-xs opacity-60">Hot cocoa in hand, book in lap.</span>
+                            </button>
+                            <button class="quiz-option p-6 md:p-8 border border-black/10 rounded-xl hover:bg-black/5 transition-all text-left group interactive-hover" data-result="party" onclick="playSound('click')">
+                                <span class="block text-2xl mb-4 group-hover:scale-110 transition-transform">🎉</span>
+                                <span class="font-bold block mb-1">The Party</span>
+                                <span class="text-xs opacity-60">Dancing until the reindeer land.</span>
+                            </button>
+                            <button class="quiz-option p-6 md:p-8 border border-black/10 rounded-xl hover:bg-black/5 transition-all text-left group interactive-hover" data-result="adventure" onclick="playSound('click')">
+                                <span class="block text-2xl mb-4 group-hover:scale-110 transition-transform">🛷</span>
+                                <span class="font-bold block mb-1">Outdoors</span>
+                                <span class="text-xs opacity-60">Chasing snowflakes and silence.</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-result" class="hidden p-6 md:p-8 bg-gradient-to-r from-xmas-red/10 to-transparent rounded-xl border border-xmas-red/20 text-left relative overflow-hidden">
+                        <div class="absolute right-0 top-0 w-32 h-32 bg-xmas-red rounded-full filter blur-[60px] opacity-20"></div>
+                        <h4 class="text-2xl md:text-3xl font-display text-xmas-red mb-2 relative z-10" id="result-title"></h4>
+                        <p class="text-xmas-text opacity-80 font-light relative z-10 mb-4 text-sm md:text-base" id="result-desc"></p>
+                        <button id="share-quiz-btn" class="relative z-10 text-xs font-bold uppercase tracking-widest text-xmas-red hover:underline flex items-center gap-2 interactive-hover" onclick="playSound('click')">
+                            <i data-lucide="share-2" class="w-3 h-3"></i> Share Result
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Wish Section -->
+        <section id="wish" class="min-h-[70vh] md:min-h-[80vh] flex flex-col justify-center items-center py-12 md:py-24 relative overflow-hidden">
+            <div class="absolute inset-0 bg-radial-gradient from-black/5 to-transparent opacity-50"></div>
+            <div class="container mx-auto px-4 z-10 flex flex-col items-center">
+                <div class="text-center mb-12 md:mb-16 opacity-0 gift-header">
+                    <h2 class="text-3xl md:text-7xl font-display mb-4 text-xmas-text">Letters to North Pole</h2>
+                    <p class="opacity-70 uppercase tracking-widest text-xs text-xmas-text">What is your heart's desire?</p>
+                </div>
+
+                <div class="glass-panel max-w-2xl w-full p-8 md:p-12 rounded-[2rem] text-center transform translate-y-10 opacity-0 transition-all duration-700 border border-xmas-red/20 relative" id="wish-panel">
+                    <!-- Input State -->
+                    <div id="wish-input-state">
+                        <i data-lucide="mail" class="w-8 h-8 text-xmas-red mx-auto mb-6"></i>
+                        <h3 class="text-2xl md:text-3xl font-display mb-4 text-xmas-text">Dear Santa...</h3>
+                        <textarea id="wish-textarea" rows="3" class="w-full glass-input rounded-xl p-4 mb-6 text-xmas-text placeholder-xmas-text/30 resize-none focus:ring-2 focus:ring-xmas-red/50" placeholder="I wish for..."></textarea>
+                        <button id="send-wish-btn" class="bg-xmas-red text-white font-bold px-8 py-3 rounded-full hover:bg-red-700 transition-colors uppercase text-xs tracking-widest w-full md:w-auto interactive-hover" onclick="playSound('click')">Send Wish</button>
+                    </div>
+
+                    <!-- Sent State -->
+                    <div id="wish-sent-state" class="hidden absolute inset-0 flex-col items-center justify-center p-8">
+                         <div class="text-xmas-red mb-4">
+                             <i data-lucide="check-circle" class="w-12 h-12 mx-auto"></i>
+                         </div>
+                         <h3 class="text-2xl font-display text-xmas-text">Wish Sent!</h3>
+                         <p class="text-sm opacity-80 text-xmas-text mt-2 italic" id="santa-response">"The elves are processing your request."</p>
+                         
+                         <div class="flex gap-4 mt-6">
+                             <button id="share-wish-btn" class="text-xs font-bold uppercase tracking-widest text-xmas-text hover:text-xmas-red transition-colors flex items-center gap-2 interactive-hover" onclick="playSound('click')">
+                                 <i data-lucide="share-2" class="w-3 h-3"></i> Share
+                             </button>
+                             <button id="new-wish-btn" class="text-xs font-bold uppercase tracking-widest text-xmas-red hover:underline interactive-hover" onclick="playSound('click')">Write another</button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-12 md:py-16 border-t border-black/5 relative z-10 bg-white/50 backdrop-blur-xl">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12 max-w-7xl mx-auto text-xmas-text">
+                    <div class="text-center md:text-left space-y-4">
+                        <h4 class="font-display font-bold text-2xl md:text-3xl">NorthPole<span class="text-xmas-red">.ui</span></h4>
+                        <p class="opacity-50 text-sm max-w-xs font-light mx-auto md:mx-0">Designed for the dreamers. Built for the believers. Wishing you a season of light.</p>
+                    </div>
+                    
+                    <div class="w-full max-w-md mx-auto md:mx-0">
+                        <p class="text-xs font-bold uppercase tracking-widest mb-4 text-xmas-red text-center md:text-left">The Nice List</p>
+                        <div class="flex gap-0">
+                            <input type="email" placeholder="email@northpole.com" class="w-full glass-input rounded-l-full px-6 py-3 text-sm focus:bg-white">
+                            <button class="bg-xmas-red text-white font-bold px-6 md:px-8 py-3 rounded-r-full hover:bg-red-700 transition-colors uppercase text-xs tracking-widest interactive-hover" onclick="playSound('click')">Join</button>
+                        </div>
+                        <p class="text-[10px] opacity-40 mt-2 text-center md:text-left">No coal. Only updates. Unsubscribe anytime.</p>
+                    </div>
+
+                    <div class="flex gap-6 items-center justify-center md:justify-start">
+                        <a href="#" class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center hover:bg-xmas-text hover:text-white transition-all interactive-hover" onclick="playSound('click')"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center hover:bg-xmas-text hover:text-white transition-all interactive-hover" onclick="playSound('click')"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between items-center mt-12 md:mt-16 pt-8 border-t border-black/5 text-[10px] uppercase tracking-widest opacity-40 text-xmas-text text-center md:text-left gap-2 md:gap-0">
+                    <p>© 2026 NorthPole UI. All rights reserved.</p>
+                    <p>May your days be merry and bright.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const toggleMobileMenu = () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('translate-x-full');
+        };
+
+        document.getElementById('close-menu-btn').addEventListener('click', toggleMobileMenu);
+
+        // --- State Management ---
+        const State = {
+            get: (key) => JSON.parse(localStorage.getItem(`winter_wonder_${key}`)),
+            set: (key, value) => localStorage.setItem(`winter_wonder_${key}`, JSON.stringify(value)),
+        };
+
+        // --- Haptics & SFX Helper ---
+        const handleInteraction = (type = 'click') => {
+            // Haptics
+            if (navigator.vibrate) navigator.vibrate(5);
+            // Audio
+            const sound = document.getElementById(type === 'success' ? 'sfx-success' : 'sfx-click');
+            if (sound && !State.get('muted')) {
+                sound.currentTime = 0;
+                sound.play().catch(() => {});
+            }
+        };
+
+        window.playSound = handleInteraction; // Global exposure for HTML onclicks
+
+        // --- Toast Notification System ---
+        const showToast = (title, message, iconName = 'bell', duration = 3000) => {
+            const toast = document.getElementById('toast');
+            const iconContainer = document.getElementById('toast-icon');
+            const titleEl = document.getElementById('toast-title');
+            const msgEl = document.getElementById('toast-msg');
+            
+            // Update Content
+            titleEl.innerText = title;
+            msgEl.innerText = message;
+            // Basic icon swap (simplified)
+            iconContainer.innerHTML = `<i data-lucide="${iconName}" class="w-5 h-5"></i>`;
+            lucide.createIcons();
+
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), duration);
+            
+            if (title === "Welcome Back") handleInteraction('success');
+        };
+
+        // --- 1. Three.js Background with Scroll Speed ---
+        const initThreeJS = () => {
+            const container = document.getElementById('canvas-container');
+            const scene = new THREE.Scene();
+            let fogColor = new THREE.Color(0xffffff); 
+            scene.fog = new THREE.FogExp2(fogColor, 0.002);
+
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
+            camera.position.z = 100;
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            const particlesGeometry = new THREE.BufferGeometry();
+            
+            // Mobile Optimization: Fewer particles
+            const isMobile = window.innerWidth < 768;
+            const particlesCount = isMobile ? 800 : 2000;
+            
+            const posArray = new Float32Array(particlesCount * 3);
+            const velArray = new Float32Array(particlesCount * 3);
+
+            for(let i = 0; i < particlesCount * 3; i+=3) {
+                posArray[i] = (Math.random() - 0.5) * 250;
+                posArray[i+1] = (Math.random() - 0.5) * 250;
+                posArray[i+2] = (Math.random() - 0.5) * 250;
+                velArray[i+1] = -(Math.random() * 0.2 + 0.05);
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            
+            // Texture
+            const canvas = document.createElement('canvas');
+            canvas.width = 32; canvas.height = 32;
+            const context = canvas.getContext('2d');
+            const gradient = context.createRadialGradient(16, 16, 0, 16, 16, 16);
+            gradient.addColorStop(0, 'rgba(255,255,255,0.9)');
+            gradient.addColorStop(0.5, 'rgba(255,255,255,0.3)');
+            gradient.addColorStop(1, 'rgba(255,255,255,0)');
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, 32, 32);
+            const texture = new THREE.CanvasTexture(canvas);
+
+            const material = new THREE.PointsMaterial({
+                size: 0.6, 
+                map: texture, 
+                transparent: true, 
+                opacity: 0.6, 
+                color: 0xD90429, 
+                blending: THREE.AdditiveBlending, 
+                depthWrite: false
+            });
+
+            const particlesMesh = new THREE.Points(particlesGeometry, material);
+            scene.add(particlesMesh);
+
+            let mouseX = 0, mouseY = 0;
+            
+            const windowHalfX = window.innerWidth / 2;
+            const windowHalfY = window.innerHeight / 2;
+
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX - windowHalfX);
+                mouseY = (event.clientY - windowHalfY);
+            });
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            window.updateFogColor = (isDark) => {
+                 const targetColor = isDark ? new THREE.Color(0x052216) : new THREE.Color(0xffffff);
+                 gsap.to(scene.fog.color, { r: targetColor.r, g: targetColor.g, b: targetColor.b, duration: 1 });
+                 
+                 if(isDark) {
+                     material.color.setHex(0xffffff);
+                     material.opacity = 0.8;
+                 } else {
+                     material.color.setHex(0xD90429);
+                     material.opacity = 0.6;
+                 }
+            };
+
+            const clock = new THREE.Clock();
+            const animate = () => {
+                requestAnimationFrame(animate);
+                const elapsedTime = clock.getElapsedTime();
+
+                // Parallax (Reduced on mobile if needed, but safe here)
+                particlesMesh.rotation.y += 0.01 * (mouseX * 0.0005 - particlesMesh.rotation.y);
+                particlesMesh.rotation.x += 0.01 * (mouseY * 0.0005 - particlesMesh.rotation.x);
+
+                const positions = particlesGeometry.attributes.position.array;
+                
+                // Dynamic Speed based on Scroll
+                const scrollSpeed = Math.min(window.scrollY / 1000, 2); // Cap effect
+                
+                for(let i = 0; i < particlesCount * 3; i+=3) {
+                    // Standard Falling + Scroll Boost
+                    positions[i+1] += velArray[i+1] * (1 + scrollSpeed); 
+                    
+                    // Wind/Wiggle
+                    positions[i] += Math.sin(elapsedTime * 0.5 + positions[i+1]) * 0.02;
+
+                    // Mouse Repulsion
+                    const px = positions[i];
+                    const py = positions[i+1];
+                    const dx = px - (mouseX * 0.1);
+                    const dy = py - (-mouseY * 0.1);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    
+                    if(dist < 30) {
+                        const force = (30 - dist) / 30;
+                        positions[i] += (dx / dist) * force * 0.5;
+                        positions[i+1] += (dy / dist) * force * 0.5;
+                    }
+
+                    if (positions[i+1] < -100) {
+                         positions[i+1] = 100;
+                         positions[i] = (Math.random() - 0.5) * 250;
+                    }
+                }
+                
+                particlesGeometry.attributes.position.needsUpdate = true;
+                renderer.render(scene, camera);
+            };
+            animate();
+        };
+
+        // --- 2. Countdown Logic (Timezone Aware Label) ---
+        const initCountdown = () => {
+            const countToDate = new Date("January 1, 2026 00:00:00").getTime();
+            
+            // Update Label
+            const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            document.getElementById("countdown-date-label").innerHTML = `Jannuary 1, 2026 <span class="text-xs opacity-50 block mt-1 font-sans tracking-widest uppercase">${timeZone} Time</span>`;
+
+            const updateTimer = () => {
+                const now = new Date().getTime();
+                const distance = countToDate - now;
+                if (distance < 0) return;
+
+                const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+                document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+                document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+                document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+            };
+            setInterval(updateTimer, 1000);
+            updateTimer();
+        };
+
+        // --- 3. Wish Feature (Enhanced with Persistence & Response) ---
+        const initWishFeature = () => {
+            const sendBtn = document.getElementById('send-wish-btn');
+            const inputState = document.getElementById('wish-input-state');
+            const sentState = document.getElementById('wish-sent-state');
+            const input = document.getElementById('wish-textarea');
+            const newWishBtn = document.getElementById('new-wish-btn');
+            const shareWishBtn = document.getElementById('share-wish-btn');
+            const responseText = document.getElementById('santa-response');
+
+            const responses = [
+                "Santa says: 'I'll double check the list for you!'",
+                "The elves have started working on it!",
+                "A wonderful wish. Placed right at the top of the stack.",
+                "Noted in the Big Red Book. Stay on the nice list!",
+                "Mrs. Claus thinks this is a splendid idea."
+            ];
+
+            // Load State
+            if (State.get('wish_sent')) {
+                inputState.classList.add('hidden');
+                sentState.classList.remove('hidden');
+                // Use default response or saved one if we were caching strings
+            }
+
+            sendBtn.addEventListener('click', () => {
+                if(input.value.trim() === "") {
+                    input.focus();
+                    handleInteraction('click');
+                    return; 
+                }
+                handleInteraction('success');
+
+                // Save State
+                State.set('wish_sent', true);
+
+                // Animation Sequence
+                gsap.to(inputState, {
+                    opacity: 0,
+                    y: -50,
+                    duration: 0.5,
+                    onComplete: () => {
+                        inputState.classList.add('hidden');
+                        sentState.classList.remove('hidden');
+                        
+                        // Set Random Response
+                        responseText.innerText = responses[Math.floor(Math.random() * responses.length)];
+
+                        // Fly Away Animation
+                        const flyingLetter = document.createElement('div');
+                        flyingLetter.innerHTML = '<i data-lucide="mail" class="w-12 h-12 text-xmas-red"></i>';
+                        flyingLetter.className = 'fixed z-50 pointer-events-none text-xmas-red letter-sent';
+                        const rect = sendBtn.getBoundingClientRect();
+                        flyingLetter.style.left = rect.left + 'px';
+                        flyingLetter.style.top = rect.top + 'px';
+                        document.body.appendChild(flyingLetter);
+                        lucide.createIcons();
+
+                        setTimeout(() => flyingLetter.remove(), 2000);
+
+                        gsap.fromTo(sentState, 
+                            { opacity: 0, scale: 0.8 }, 
+                            { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }
+                        );
+                    }
+                });
+            });
+
+            newWishBtn.addEventListener('click', () => {
+                input.value = "";
+                State.set('wish_sent', false);
+                
+                gsap.to(sentState, {
+                    opacity: 0,
+                    scale: 0.8,
+                    duration: 0.3,
+                    onComplete: () => {
+                        sentState.classList.add('hidden');
+                        inputState.classList.remove('hidden');
+                        gsap.fromTo(inputState, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
+                    }
+                });
+            });
+
+            shareWishBtn.addEventListener('click', () => {
+                 navigator.clipboard.writeText(`I just sent my letter to the North Pole on Winter Wonder 2026! 🎄✨`).then(() => {
+                    showToast("Copied to Clipboard", "Spread the magic!", "copy");
+                 });
+            });
+        };
+
+        // --- 4. Shop Logic (Toast) ---
+        let cartCount = 0;
+        const initShopFeedback = () => {
+            const btns = document.querySelectorAll('.add-to-cart-btn');
+            const badge = document.getElementById('cart-count');
+
+            btns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    handleInteraction('success');
+                    showToast("Added to Cart", "Excellent choice for the season.", "shopping-bag");
+
+                    // Update Badge
+                    cartCount++;
+                    badge.innerText = cartCount;
+                    badge.classList.remove('opacity-0');
+                    gsap.fromTo(badge, { scale: 1.5 }, { scale: 1, duration: 0.3, ease: "back.out(2)" });
+                });
+            });
+        };
+
+        // --- 5. Theme & Audio (Persistent) ---
+        const initThemeAndAudio = () => {
+            const themeBtn = document.getElementById('theme-toggle');
+            const label = document.getElementById('theme-label');
+            const body = document.body;
+            
+            // Load Theme
+            const savedTheme = State.get('theme');
+            let isDark = savedTheme === 'dark';
+            
+            const applyTheme = () => {
+                const iconContainer = themeBtn.querySelector('span:first-child'); // Select the span wrapper
+
+                if(isDark) {
+                    body.classList.add('dark-theme');
+                    label.innerText = "Evergreen";
+                    
+                    // Force Dark Theme Styles on Icon
+                    iconContainer.classList.remove('bg-xmas-red', 'text-white');
+                    iconContainer.classList.add('bg-white', 'text-xmas-red');
+                } else {
+                    body.classList.remove('dark-theme');
+                    label.innerText = "Snow White";
+                    
+                    // Force Light Theme Styles on Icon
+                    iconContainer.classList.remove('bg-white', 'text-xmas-red');
+                    iconContainer.classList.add('bg-xmas-red', 'text-white');
+                }
+                if(window.updateFogColor) window.updateFogColor(isDark);
+            };
+            applyTheme(); // Apply on load
+
+            themeBtn.addEventListener('click', () => {
+                isDark = !isDark;
+                State.set('theme', isDark ? 'dark' : 'light');
+                applyTheme();
+            });
+
+            // Audio
+            const musicBtn = document.getElementById('music-toggle');
+            const audio = document.getElementById('bg-music');
+            const viz = document.getElementById('music-viz');
+            let isPlaying = false;
+
+            // Check if user previously muted interactions (default false)
+            // Note: Autoplay policy prevents auto-starting music, so we keep music off by default
+            
+            musicBtn.addEventListener('click', () => {
+                isPlaying = !isPlaying;
+                const icon = musicBtn.querySelector('svg');
+                
+                if(isPlaying) {
+                    audio.play().catch(e => console.log("Audio policy check"));
+                    icon.classList.remove('text-xmas-red'); 
+                    icon.classList.add('text-white');
+                    musicBtn.classList.add('bg-xmas-red');
+                    viz.classList.remove('scale-y-0');
+                    viz.classList.add('animate-pulse');
+                    State.set('muted', false);
+                } else {
+                    audio.pause();
+                    icon.classList.add('text-xmas-red'); 
+                    icon.classList.remove('text-white');
+                    musicBtn.classList.remove('bg-xmas-red');
+                    viz.classList.add('scale-y-0');
+                    viz.classList.remove('animate-pulse');
+                    State.set('muted', true);
+                }
+            });
+        };
+
+        // --- 6. Quiz Logic (Persistent) ---
+        const initQuiz = () => {
+            const options = document.querySelectorAll('.quiz-option');
+            const resultBox = document.getElementById('quiz-result');
+            const title = document.getElementById('result-title');
+            const desc = document.getElementById('result-desc');
+            const shareBtn = document.getElementById('share-quiz-btn');
+
+            const results = {
+                cozy: { title: "The Hearth Keeper", desc: "Your spirit is warm and inviting, like a crackling fire on a snowy night." },
+                party: { title: "The Jingle Bell Rocker", desc: "You bring the spark, the energy, and the noise to the silent night." },
+                adventure: { title: "The North Star", desc: "Wild and free, you find magic in the stillness of the winter woods." }
+            };
+
+            const displayResult = (key) => {
+                const res = results[key];
+                resultBox.classList.remove('hidden');
+                title.innerText = res.title;
+                desc.innerText = res.desc;
+                
+                // Hide options to clean up view for returning users? Or keep them. 
+                // Let's keep them but scroll to result.
+                gsap.fromTo(resultBox, { opacity: 0, height: 0 }, { opacity: 1, height: 'auto', duration: 0.6, ease: "power2.out" });
+            };
+
+            // Load State
+            const savedResult = State.get('quiz_result');
+            if(savedResult) {
+                // Pre-select visual
+                const btn = document.querySelector(`button[data-result="${savedResult}"]`);
+                if(btn) btn.classList.add('selected');
+                displayResult(savedResult);
+            }
+
+            options.forEach(opt => {
+                opt.addEventListener('click', () => {
+                    handleInteraction('success');
+                    options.forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    const resultKey = opt.dataset.result;
+                    State.set('quiz_result', resultKey); // Save
+                    displayResult(resultKey);
+                });
+            });
+
+            shareBtn.addEventListener('click', () => {
+                 const currentTitle = title.innerText;
+                 navigator.clipboard.writeText(`I am "${currentTitle}"! Find your holiday spirit at Winter Wonder 2026. ❄️`).then(() => {
+                    showToast("Result Copied", "Ready to paste on socials!", "copy");
+                 });
+            });
+        };
+
+        // --- 7. Welcome Logic ---
+        const initWelcome = () => {
+            const hasVisited = State.get('visited');
+            const welcomeToast = document.getElementById('welcome-toast');
+            
+            if (hasVisited) {
+                // Show Welcome Back
+                gsap.fromTo(welcomeToast, 
+                    { y: -100, opacity: 0 }, 
+                    { y: 0, opacity: 1, duration: 1, delay: 1, ease: "elastic.out(1, 0.7)" }
+                );
+                setTimeout(() => {
+                    gsap.to(welcomeToast, { y: -100, opacity: 0, duration: 0.5 });
+                }, 5000);
+            } else {
+                State.set('visited', true);
+            }
+        };
+
+        // --- Gallery Scroll Logic ---
+        window.scrollGallery = (direction) => {
+            const container = document.getElementById('image-carousel');
+            const scrollAmount = 300; // Approximate card width + gap
+            if(container) {
+                container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+            }
+        };
+
+        // --- GSAP Animations ---
+        const initAnimations = () => {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            const tl = gsap.timeline();
+            tl.to("#loader", { opacity: 0, duration: 1.2, delay: 0.5, onComplete: () => document.getElementById('loader').style.display = 'none' })
+              .to(".hero-subtitle", { y: 0, duration: 1, ease: "power3.out" }, "-=0.5")
+              .to(".hero-title", { y: 0, duration: 1.5, ease: "power4.out" }, "-=0.8")
+              .to(".hero-desc", { y: 0, duration: 1, ease: "power3.out" }, "-=1")
+              .to(".hero-btn", { opacity: 1, duration: 1 }, "-=0.5")
+              .to(".hero-image-container", { opacity: 1, x: 0, duration: 1.2, ease: "power3.out" }, "-=1.2");
+
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    nav.classList.add('py-2'); nav.classList.remove('py-6');
+                } else {
+                    nav.classList.remove('py-2'); nav.classList.add('py-6');
+                }
+            });
+
+            const fadeUps = [
+                { trigger: "#countdown", target: ".section-header" },
+                { trigger: "#shop", target: ".section-header" },
+                { trigger: "#events", target: ".section-header" },
+                { trigger: "#quiz", target: ".section-header" },
+                { trigger: "#wish", target: ".gift-header" },
+                { trigger: "#wish", target: "#wish-panel" },
+                { trigger: "#history", target: ".section-header" },
+                { trigger: "#gallery", target: ".section-header" },
+                { trigger: "#reindeer", target: ".section-header" }, // Added Reindeer Header
+                { trigger: "#recipes", target: ".section-header" } // Added Recipes Header
+            ];
+
+            fadeUps.forEach(item => {
+                gsap.to(item.target, {
+                    scrollTrigger: { trigger: item.trigger, start: "top 80%" },
+                    opacity: 1, y: 0, duration: 1, ease: "power3.out"
+                });
+            });
+
+            // New Animation for Reindeer Cards
+            gsap.to(".reindeer-card", {
+                scrollTrigger: { trigger: "#reindeer", start: "top 75%" },
+                opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "back.out(1.2)"
+            });
+
+            // New Animation for Recipe Cards
+            gsap.to(".recipe-card", {
+                scrollTrigger: { trigger: "#recipes", start: "top 75%" },
+                opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power3.out"
+            });
+
+            // Gallery Items Animation
+            gsap.to(".gallery-item", {
+                scrollTrigger: { trigger: "#gallery", start: "top 70%" },
+                opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: "power3.out"
+            });
+
+            gsap.to(".history-card", {
+                scrollTrigger: { trigger: "#history", start: "top 75%" },
+                opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power3.out"
+            });
+
+            gsap.to(".counter-card", {
+                scrollTrigger: { trigger: "#countdown", start: "top 75%" },
+                opacity: 1, scale: 1, duration: 0.8, stagger: 0.1, ease: "back.out(1.2)"
+            });
+
+            gsap.to(".shop-card", {
+                scrollTrigger: { trigger: "#shop", start: "top 75%" },
+                opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power3.out"
+            });
+
+            gsap.to(".event-item", {
+                scrollTrigger: { trigger: "#events", start: "top 75%" },
+                opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power3.out"
+            });
+            
+            gsap.to(".quiz-container", {
+                scrollTrigger: { trigger: "#quiz", start: "top 75%" },
+                opacity: 1, y: 0, duration: 1, ease: "power3.out"
+            });
+        };
+
+        // --- Init ---
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            initThreeJS();
+            initCountdown();
+            initAnimations();
+            initWishFeature();
+            initThemeAndAudio();
+            initQuiz();
+            initShopFeedback();
+            initWelcome();
+        });
+    </script>
+</body>
+</html>
